@@ -8,6 +8,7 @@ function App() {
   const addToDo=(event)=>
   {
     //This will fire on button click
+    event.preventDefault();
     settodos([...todos,input]);
     setInput('');
   }
