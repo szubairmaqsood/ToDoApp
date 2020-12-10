@@ -2,6 +2,7 @@ import React, { useState,useEffect } from "react";
 import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
 import ToDo from "./ToDo";
 import db from "./firebase";
+import firebase from "firebase";
 import "./App.css";
 
 
@@ -25,7 +26,8 @@ function App() {
     event.preventDefault(); // will stop refresh
     db.collection('ToDOs').add(
       {
-        Task:input
+        Task:input,
+        timestamp:firebase.firestore.FieldValue.serverTimestamp()
       }
     )
     //settodos([...todos, input]); // add data to our to do list
