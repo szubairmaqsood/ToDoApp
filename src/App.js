@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <h1>Hello World!</h1>
-      <input value={input} />
+      <input value={input} onChange={event=>setInput(event.target.value)}/>
       <button>Add toDo List </button>
       <ul>
         {todos.map
