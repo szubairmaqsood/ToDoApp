@@ -16,7 +16,7 @@ function App() {
     // this code fires when the app loads
     db.collection('ToDOs').onSnapshot(snapshot=>
       {
-        settodos(snapshot.docs.map(doc=>doc.data().Task))
+        settodos(snapshot.docs.map(doc=>({id:doc.id,Task:doc.data().Task})))
       })
   }
   ,[])
@@ -57,7 +57,7 @@ function App() {
       <ul>
         {todos.map((todo) => (
           <li>
-            <ToDo text={todo}></ToDo>
+            <ToDo todo={todo}></ToDo>
           </li>
         ))}
       </ul>
