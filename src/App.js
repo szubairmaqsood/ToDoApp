@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
 import ToDo from "./ToDo";
+import db from "./firebase";
 import "./App.css";
 
+
 function App() {
-  const [todos, settodos] = useState([
-    "Takes dog out for walk",
-    "Take the rubbish out",
-    "I want to go out today",
-  ]);
+  const [todos, settodos] = useState([]);
   const [input, setInput] = useState("");
+  //when app loads we want to fetch data and alos need to react to data added and removed from database
+
+  useEffect(()=>
+  {
+    // this code fires when the app loads
+    db.collection('ToDOs').onSnapshot(snapshot=>
+      {
+        settodos(snapshot.docs.map(doc=>doc.data().Task))
+      })
+  }
+  ,[])
 
   const addToDo = (event) => {
     //This will fire on button click
