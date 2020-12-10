@@ -23,12 +23,17 @@ function App() {
   const addToDo = (event) => {
     //This will fire on button click
     event.preventDefault(); // will stop refresh
-    settodos([...todos, input]); // add data to our to do list
+    db.collection('ToDOs').add(
+      {
+        Task:input
+      }
+    )
+    //settodos([...todos, input]); // add data to our to do list
     setInput(""); //set out input filed to empty
   };
   return (
     <div className="App">
-      <h1>Hello World!</h1>
+      <h1>Hello World! This is to do App</h1>
       <form>
         <FormControl>
           <InputLabel>Write to do:</InputLabel>
