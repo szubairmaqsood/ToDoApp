@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { Button } from '@material-ui/core';
 import './App.css';
 
 function App() {
@@ -8,16 +9,16 @@ function App() {
   const addToDo=(event)=>
   {
     //This will fire on button click
-    event.preventDefault();
-    settodos([...todos,input]);
-    setInput('');
+    event.preventDefault();   // will stop refresh
+    settodos([...todos,input]);  // add data to our to do list
+    setInput('');              //set out input filed to empty
   }
   return (
     <div className="App">
       <h1>Hello World!</h1>
       <form>
       <input value={input} onChange={event=>setInput(event.target.value)}/>
-      <button type="submit"  onClick={addToDo}>Add toDo List </button>
+      <Button disabled={!input}  variant="contained" color="primary" type="submit"  onClick={addToDo}>Add toDo</Button>
       </form>
       <ul>
         {todos.map
